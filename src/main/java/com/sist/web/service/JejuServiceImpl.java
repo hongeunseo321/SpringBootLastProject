@@ -1,0 +1,29 @@
+package com.sist.web.service;
+import java.util.*;
+
+import org.springframework.stereotype.Service;
+
+import com.sist.web.vo.*;
+
+import lombok.RequiredArgsConstructor;
+
+import com.sist.web.mapper.*;
+
+@Service
+@RequiredArgsConstructor
+public class JejuServiceImpl implements JejuService{
+	private final JejuMapper mapper;
+	
+	@Override
+	public List<JejuVO> jejuListData(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.jejuListData(map);
+	}
+
+	@Override
+	public int jejuTotalPage(int contenttype) {
+		// TODO Auto-generated method stub
+		return mapper.jejuTotalPage(contenttype);
+	}
+
+}

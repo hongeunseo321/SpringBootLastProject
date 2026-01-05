@@ -6,22 +6,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sist.web.vo.*;
 import com.sist.web.service.*;
-import com.sist.web.vo.SeoulVO;
 
 import lombok.RequiredArgsConstructor;
-/*
- * 	MVC: 오라클 / 컨트롤러 / JSP
- * 	     ------------- Vue / React
- * 		=> SQL / 사용자가 어떤 데이터를 보낼지
- */
+
 @Controller
 @RequiredArgsConstructor
-public class SeoulController {
-	private final SeoulService sService;
+public class BusanController {
+	private final BusanService bService;
 	
-	@GetMapping("/seoul/list")
-	public String seoul_list(@RequestParam(name = "page", required = false) String page, @RequestParam("cno") int cno, Model model) {
+	@GetMapping("/busan/list")
+	public String busan_list(@RequestParam(name = "page", required = false) String page, @RequestParam("cno") int cno, Model model) {
 		if(page==null)
 			page="1";
 		int curpage=Integer.parseInt(page);
@@ -30,8 +26,8 @@ public class SeoulController {
 		map.put("start", (curpage-1)*12);
 		map.put("contenttype", cno);
 		
-		List<SeoulVO> list=sService.seoulListData(map);
-		int totalpage=sService.seoulTotalPage(cno);
+		List<BusanVO> list=bService.busanListData(map);
+		int totalpage=bService.busanTotalPage(cno);
 		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -40,18 +36,18 @@ public class SeoulController {
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
-		for(SeoulVO vo:list) {
+		for(BusanVO vo:list) {
 			String[] addrs=vo.getAddress().split(" ");
 			vo.setAddress(addrs[0]+" "+addrs[1]);
 		}
 		
 		String name="";
-		if(cno==12) name="서울 관광지";
-		else if(cno==14) name="서울 문화시설";
-		else if(cno==15) name="서울 축제&공연";
-		else if(cno==32) name="서울 숙박";
-		else if(cno==38) name="서울 쇼핑";
-		else if(cno==39) name="서울 음식";
+		if(cno==12) name="부산 관광지";
+		else if(cno==14) name="부산 문화시설";
+		else if(cno==15) name="부산 축제&공연";
+		else if(cno==32) name="부산 숙박";
+		else if(cno==38) name="부산 쇼핑";
+		else if(cno==39) name="부산 음식";
 		
 		model.addAttribute("name",name);
 		model.addAttribute("list",list);
@@ -61,7 +57,7 @@ public class SeoulController {
 		model.addAttribute("curpage",curpage);
 		model.addAttribute("cno",cno);
 		
-		model.addAttribute("main_jsp", "../seoul/list.jsp");
+		model.addAttribute("main_jsp", "../busan/list.jsp");
 		return "main/main"; // include가 되는 파일을 올리면 request를 공유할 수 있다
-	}
+	}	
 }

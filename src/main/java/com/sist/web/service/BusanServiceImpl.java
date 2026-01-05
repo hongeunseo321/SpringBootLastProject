@@ -12,25 +12,19 @@ import com.sist.web.mapper.*;
 
 @Service
 @RequiredArgsConstructor
-public class SeoulServiceImpl implements SeoulService{
-	private final SeoulMapper mapper;
+public class BusanServiceImpl implements BusanService{
+	private final BusanMapper mapper;
 	
-	/*
-	@Autowired
-	public SeoulServiceImpl(SeoulMapper mapper) {
-		this.mapper=mapper;
-	}
-	 */
-
 	@Override
-	public List<SeoulVO> seoulListData(Map map) {
+	public List<BusanVO> busanListData(Map map) {
 		// TODO Auto-generated method stub
-		return mapper.seoulListData(map);
+		return mapper.busanListData(map);
 	}
 
 	@Override
-	public int seoulTotalPage(int contenttype) {
+	public int busanTotalPage(int contenttype) {
 		// TODO Auto-generated method stub
-		return mapper.seoulTotalPage(contenttype);
+		return mapper.busanTotalPage(contenttype);
 	}
+
 }
