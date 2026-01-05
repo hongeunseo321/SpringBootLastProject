@@ -24,4 +24,7 @@ public interface JejuMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM jejutravel "
 			+ "WHERE contenttype=#{contenttype}")
 	public int jejuTotalPage(int contenttype);
+	
+	public JejuVO jejuAttractionDetailData(int contentid);
+	public void jejuHitIncrement(int contentid);
 }

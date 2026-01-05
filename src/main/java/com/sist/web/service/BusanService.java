@@ -8,4 +8,5 @@ import com.sist.web.vo.BusanVO;
 public interface BusanService {
 	public List<BusanVO> busanListData(Map map);
 	public int busanTotalPage(int contenttype);
+	public BusanVO busanAttractionDetailData(int contentid);
 }

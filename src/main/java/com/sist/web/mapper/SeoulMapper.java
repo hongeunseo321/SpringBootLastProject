@@ -24,4 +24,7 @@ public interface SeoulMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM seoultravel "
 			+ "WHERE contenttype=#{contenttype}")
 	public int seoulTotalPage(int contenttype);
+	
+	public SeoulVO seoulAttractionDetailData(int contentid);
+	public void seoulHitIncrement(int contentid);
 }

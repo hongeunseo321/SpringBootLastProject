@@ -53,7 +53,7 @@
 					<div class="single-post wow fadeInUp" data-wow-delay="0.1s">
 						<!-- Post Thumb -->
 						<div class="post-thumb">
-							<a href="/busan/list_detail_before?cno=${cno }">
+							<a href="/busan/detail_before?contentid=${vo.contentid }&=${vo.contenttype}">
 								<img src="${vo.image1 }" style="width: 350px; height: 249px;" alt="">
 							</a>
 						</div>
@@ -88,7 +88,7 @@
 									</div>
 								</div>
 							</div>
-							<a href="/busan/location_detail_before?contentid=${vo.contentid }">
+							<a href="/busan/detail_before?contentid=${vo.contentid }&contenttype=${vo.contenttype}">
 								<h4 class="post-headline">${vo.title}</h4>
 							</a>
 						</div>

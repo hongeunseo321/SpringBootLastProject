@@ -15,7 +15,7 @@ MSG           CLOB
  */
 
 @Data
-public class SeoulLocationVO {
+public class AttractionVO {
 	private int no,contentid;
 	private String infocenter,restdate,usetime,parking,msg;
 }

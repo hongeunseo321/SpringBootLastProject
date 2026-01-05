@@ -26,4 +26,11 @@ public class JejuServiceImpl implements JejuService{
 		return mapper.jejuTotalPage(contenttype);
 	}
 
+	@Override
+	public JejuVO jejuAttractionDetailData(int contentid) {
+		// TODO Auto-generated method stub
+		mapper.jejuHitIncrement(contentid);
+		return mapper.jejuAttractionDetailData(contentid);
+	}
+
 }

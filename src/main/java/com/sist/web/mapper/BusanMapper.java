@@ -24,4 +24,7 @@ public interface BusanMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM busantravel "
 			+ "WHERE contenttype=#{contenttype}")
 	public int busanTotalPage(int contenttype);
+	
+	public BusanVO busanAttractionDetailData(int contentid);
+	public void busanHitIncrement(int contentid);
 }

@@ -4,10 +4,31 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.web.mapper.BusanMapper">
 	<select id="busanListData" resultType="com.sist.web.vo.BusanVO" parameterType="hashmap">
-		SELECT no,contentid,title,address,image1,hit
+		SELECT no,contentid,title,address,image1,hit,contenttype
 		FROM busantravel
 		WHERE contenttype=#{contenttype}
 		ORDER BY no ASC
 		OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 	</select>
+	
+	<resultMap type="com.sist.web.vo.BusanVO" id="attMap">
+		<result property="avo.infocenter" column="infocenter"/>
+		<result property="avo.restdate" column="restdate"/>
+		<result property="avo.usetime" column="usetime"/>
+		<result property="avo.parking" column="parking"/>
+		<result property="avo.msg" column="msg"/>
+	</resultMap>
+	
+	<select id="busanAttractionDetailData" resultMap="attMap" parameterType="int">
+		SELECT b.no,title,image1,address,x,y,infocenter,restdate,usetime,parking,msg
+		FROM busantravel b JOIN attraction a
+		ON b.contentid=a.contentid
+		AND b.contentid=#{contentid}
+	</select>
+	
+	<update id="busanHitIncrement" parameterType="int">
+		UPDATE busantravel SET
+		hit=hit+1
+		WHERE contentid=#{contentid}
+	</update>
 </mapper>

@@ -33,4 +33,11 @@ public class SeoulServiceImpl implements SeoulService{
 		// TODO Auto-generated method stub
 		return mapper.seoulTotalPage(contenttype);
 	}
+
+	@Override
+	public SeoulVO seoulAttractionDetailData(int contentid) {
+		// TODO Auto-generated method stub
+		mapper.seoulHitIncrement(contentid);
+		return mapper.seoulAttractionDetailData(contentid);
+	}
 }
