@@ -92,7 +92,7 @@ public class SeoulController {
 		} else if (contenttype==15){
 			jsp="../seoul/fastival";
 		} else if (contenttype==32){
-			jsp="../seoul/stey.jsp";
+			jsp="../seoul/stay.jsp";
 		} else if (contenttype==38){
 			jsp="../seoul/shopping.jsp";
 		} else if (contenttype==39){
