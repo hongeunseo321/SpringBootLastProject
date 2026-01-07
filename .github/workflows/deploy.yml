@@ -41,7 +41,7 @@ jobs:
 
     - name: Add known_hosts
       run:
-        ssh-keygen -t rsa 54.180.120.110 >> ~/.ssh/known_hosts
+        ssh-keygen -H rsa 54.180.120.110 >> ~/.ssh/known_hosts
     - name: Deploy to Server with rsync
       run: |
         rsync -avz -e "ssh -o StrictHostKeyChecking-no" build/libs/*.war ubuntu@54.180.120.110:~/app
