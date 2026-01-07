@@ -1,19 +1,20 @@
 package com.sist.web.service;
-import java.util.*;
+
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.sist.web.vo.*;
+import com.sist.web.mapper.JejuMapper;
+import com.sist.web.vo.JejuVO;
 
 import lombok.RequiredArgsConstructor;
 
-import com.sist.web.mapper.*;
-
 @Service
 @RequiredArgsConstructor
-public class JejuServiceImpl implements JejuService{
+public class JejuServiceImpl implements JejuService {
 	private final JejuMapper mapper;
-	
+
 	@Override
 	public List<JejuVO> jejuListData(Map map) {
 		// TODO Auto-generated method stub
@@ -27,10 +28,20 @@ public class JejuServiceImpl implements JejuService{
 	}
 
 	@Override
-	public JejuVO jejuAttractionDetailData(int contentid) {
+	public List<JejuVO> jejuFindData(Map map) {
 		// TODO Auto-generated method stub
-		mapper.jejuHitIncrement(contentid);
-		return mapper.jejuAttractionDetailData(contentid);
+		return mapper.jejuFindData(map);
 	}
 
+	@Override
+	public int jejuFindTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.jejuFindTotalPage(map);
+	}
+
+	@Override
+	public List<JejuVO> jejuTop4Data() {
+		// TODO Auto-generated method stub
+		return mapper.jejuTop4Data();
+	}
 }

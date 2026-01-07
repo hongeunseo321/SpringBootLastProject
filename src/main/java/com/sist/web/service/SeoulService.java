@@ -1,31 +1,41 @@
 package com.sist.web.service;
+
 import java.util.*;
 import com.sist.web.vo.*;
-/*
- *  user 요청  ===============>  DispatcherServlet
- *  		  /seoul/location	|# 위임
- *  						   HandlerMapping
- *  							|# URI 주소 찾기
- *  							|	ㄴ@GetMapping
- *  							|	ㄴ@PostMapping
- *  							|	ㄴ@PutMapping
- *  							|	ㄴ@DeleteMapping
- *  							|
- *  							|# 밑에 있는 메소드 호출
- *  							|	ㄴService
- *  							|		|
- *  							|	ㄴMapper => 수정 시에 의존성을 약하게
- *  							|		|
- *  							|	ㄴ오라클
- *  							|
- *  						   DispatcherServlet
- *  							|
- *  						   ViewResolver
- *  							|
- *  						   JSP
+
+/*           /seoul/location
+ *                 | 인가 
+ *    user요청 --------------- DispatcherServlet 
+ *                                 | 위임 
+ *                               HandlerMapping 
+ *                                 | URI주소 찾기 => @GetMapping
+ *                                                 @PostMapping
+ *                                                 @PutMapping
+ *                                                 @DeleteMapping 
+ *                                    => 인증 => 권한 부여
+ *                                 | 밑에 있는 메소드 호출 
+ *                                         |
+ *                                      Service 
+ *                                         |
+ *                                      Mapper => 수정시에 의존성을 약하게 
+ *                                         |
+ *                                       오라클 
+ *                               DispatcherServlet 
+ *                                 |
+ *                               ViewResolver 
+ *                                 |
+ *                                JSP 
  */
 public interface SeoulService {
 	public List<SeoulVO> seoulListData(Map map);
+
 	public int seoulTotalPage(int contenttype);
+
 	public SeoulVO seoulAttractionDetailData(int contentid);
+
+	public List<SeoulVO> seoulFindData(Map map);
+
+	public int seoulFindTotalPage(String address);
+
+	public List<SeoulVO> seoulTop5Data();
 }

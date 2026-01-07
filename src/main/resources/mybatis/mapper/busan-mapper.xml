@@ -3,32 +3,43 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.web.mapper.BusanMapper">
-	<select id="busanListData" resultType="com.sist.web.vo.BusanVO" parameterType="hashmap">
-		SELECT no,contentid,title,address,image1,hit,contenttype
+	<select id="busanListData" resultType="com.sist.web.vo.BusanVO"
+		parameterType="hashmap">
+		SELECT no,contentid,title,address,image1,hit
 		FROM busantravel
 		WHERE contenttype=#{contenttype}
 		ORDER BY no ASC
 		OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 	</select>
-	
-	<resultMap type="com.sist.web.vo.BusanVO" id="attMap">
-		<result property="avo.infocenter" column="infocenter"/>
-		<result property="avo.restdate" column="restdate"/>
-		<result property="avo.usetime" column="usetime"/>
-		<result property="avo.parking" column="parking"/>
-		<result property="avo.msg" column="msg"/>
-	</resultMap>
-	
-	<select id="busanAttractionDetailData" resultMap="attMap" parameterType="int">
-		SELECT b.no,title,image1,address,x,y,infocenter,restdate,usetime,parking,msg
-		FROM busantravel b JOIN attraction a
-		ON b.contentid=a.contentid
-		AND b.contentid=#{contentid}
+
+	<!-- 검색 -->
+	<select id="busanFindData" resultType="com.sist.web.vo.BusanVO"
+		parameterType="hashmap">
+		SELECT no,contentid,title,address,image1,hit,contenttype
+		FROM busantravel
+		WHERE address LIKE '%'||#{address}||'%'
+		ORDER BY no ASC
+		OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 	</select>
-	
-	<update id="busanHitIncrement" parameterType="int">
-		UPDATE busantravel SET
-		hit=hit+1
-		WHERE contentid=#{contentid}
-	</update>
+	<select id="busanFindTotalPage" resultType="int"
+		parameterType="string">
+		SELECT CEIL(COUNT(*)/12.0)
+		FROM busantravel
+		WHERE address LIKE '%'||#{address}||'%'
+	</select>
+
+	<resultMap type="com.sist.web.vo.BusanVO" id="busanMap">
+		<result column="usetime" property="avo.usetime" />
+		<result column="restdate" property="avo.restdate" />
+		<result column="parking" property="avo.parking" />
+	</resultMap>
+	<select id="busanTop4Data" resultMap="busanMap">
+		SELECT no,contentid,title,address,image1,hit,usetime,restdate,parking,rownum
+		FROM (SELECT
+		b.no,b.contentid,title,address,image1,hit,usetime,restdate,parking
+		FROM busantravel b,attraction a
+		WHERE b.contentid=a.contentid
+		ORDER BY hit DESC)
+		WHERE rownum&lt;=4
+	</select>
 </mapper>

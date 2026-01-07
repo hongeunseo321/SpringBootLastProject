@@ -3,32 +3,35 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.web.mapper.JejuMapper">
-	<select id="jejuListData" resultType="com.sist.web.vo.JejuVO" parameterType="hashmap">
-		SELECT no,contentid,title,address,image1,hit,contenttype
+	<select id="jejuListData" resultType="com.sist.web.vo.JejuVO"
+		parameterType="hashmap">
+		SELECT no,contentid,title,address,image1,hit
 		FROM jejutravel
 		WHERE contenttype=#{contenttype}
 		ORDER BY no ASC
 		OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 	</select>
-	
-	<resultMap type="com.sist.web.vo.JejuVO" id="attMap">
-		<result property="avo.infocenter" column="infocenter"/>
-		<result property="avo.restdate" column="restdate"/>
-		<result property="avo.usetime" column="usetime"/>
-		<result property="avo.parking" column="parking"/>
-		<result property="avo.msg" column="msg"/>
-	</resultMap>
-	
-	<select id="jejuAttractionDetailData" resultMap="attMap" parameterType="int">
-		SELECT j.no,title,image1,address,x,y,infocenter,restdate,usetime,parking,msg
-		FROM jejutravel j JOIN attraction a
-		ON j.contentid=a.contentid
-		AND j.contentid=#{contentid}
+	<select id="jejuFindData" resultType="com.sist.web.vo.JejuVO"
+		parameterType="hashmap">
+		SELECT no,contentid,title,address,image1,hit
+		FROM jejutravel
+		WHERE contenttype=#{selected}
+		AND title LIKE '%'||#{fd}||'%'
+		ORDER BY no ASC
+		OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 	</select>
-	
-	<update id="jejuHitIncrement" parameterType="int">
-		UPDATE jejutravel SET
-		hit=hit+1
-		WHERE contentid=#{contentid}
-	</update>
+	<select id="jejuFindTotalPage" resultType="int"
+		parameterType="hashmap">
+		SELECT CEIL(COUNT(*)/12.0)
+		FROM jejutravel
+		WHERE contenttype=#{selected}
+		AND title LIKE '%'||#{fd}||'%'
+	</select>
+
+	<select id="jejuTop4Data" resultType="com.sist.web.vo.JejuVO">
+		SELECT no,contentid,title,address,image1,hit,rownum
+		FROM (SELECT no,contentid,title,address,image1,hit
+		FROM jejutravel ORDER BY hit DESC)
+		WHERE rownum&lt;=4
+	</select>
 </mapper>

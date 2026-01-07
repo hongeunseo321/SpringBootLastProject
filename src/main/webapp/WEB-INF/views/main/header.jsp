@@ -86,7 +86,7 @@
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
 										<a class="dropdown-item" href="/seoul/list?cno=12">관광지</a> <a
 											class="dropdown-item" href="/seoul/list?cno=14">문화시설</a> <a
-											class="dropdown-item" href="/seoul/list?cno=15">축제&공연</a> <a
+											class="dropdown-item" href="/seoul/list?cno=15">축제 & 공연</a> <a
 											class="dropdown-item" href="/seoul/list?cno=32">숙박</a> <a
 											class="dropdown-item" href="/seoul/list?cno=38">쇼핑</a> <a
 											class="dropdown-item" href="/seoul/list?cno=39">음식</a>
@@ -98,7 +98,7 @@
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
 										<a class="dropdown-item" href="/busan/list?cno=12">관광지</a> <a
 											class="dropdown-item" href="/busan/list?cno=14">문화시설</a> <a
-											class="dropdown-item" href="/busan/list?cno=15">축제&공연</a> <a
+											class="dropdown-item" href="/busan/list?cno=15">축제 & 공연</a> <a
 											class="dropdown-item" href="/busan/list?cno=32">숙박</a> <a
 											class="dropdown-item" href="/busan/list?cno=38">쇼핑</a> <a
 											class="dropdown-item" href="/busan/list?cno=39">음식</a>
@@ -110,7 +110,7 @@
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
 										<a class="dropdown-item" href="/jeju/list?cno=12">관광지</a> <a
 											class="dropdown-item" href="/jeju/list?cno=14">문화시설</a> <a
-											class="dropdown-item" href="/jeju/list?cno=15">축제&공연</a> <a
+											class="dropdown-item" href="/jeju/list?cno=15">축제 & 공연</a> <a
 											class="dropdown-item" href="/jeju/list?cno=32">숙박</a> <a
 											class="dropdown-item" href="/jeju/list?cno=38">쇼핑</a> <a
 											class="dropdown-item" href="/jeju/list?cno=39">음식</a>
@@ -118,14 +118,15 @@
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#" id="yummyDropdown"
 									role="button" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">전국맛집</a>
+									aria-expanded="false">여행 검색</a>
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
-										<a class="dropdown-item" href="index.html">한식</a> <a
-											class="dropdown-item" href="archive.html">중식</a> <a
-											class="dropdown-item" href="single.html">양식</a> <a
-											class="dropdown-item" href="static.html">일식</a> <a
-											class="dropdown-item" href="contact.html">기타</a>
+										<a class="dropdown-item" href="/seoul/find">서울 여행 검색</a> <a
+											class="dropdown-item" href="/busan/find">부산 여행 검색</a> <a
+											class="dropdown-item" href="/jeju/find">제주 여행 검색</a>
+
 									</div></li>
+								<li class="nav-item"><a class="nav-link" href="#">전국
+										특산물</a></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#" id="yummyDropdown"
 									role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -133,10 +134,9 @@
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
 										<a class="dropdown-item" href="index.html">자유게시판</a> <a
 											class="dropdown-item" href="archive.html">공지사항</a> <a
-											class="dropdown-item" href="single.html">일대일 채팅</a> <a
-											class="dropdown-item" href="single.html">그룹 채팅</a> 
+											class="dropdown-item" href="single.html">일대일채팅</a> <a
+											class="dropdown-item" href="single.html">그룹채팅</a>
 									</div></li>
-								<li class="nav-item"><a class="nav-link" href="#">전국 특산물</a></li>
 							</ul>
 						</div>
 					</nav>

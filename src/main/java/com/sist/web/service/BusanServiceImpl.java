@@ -1,19 +1,17 @@
 package com.sist.web.service;
-import java.util.*;
 
 import org.springframework.stereotype.Service;
-
+import java.util.*;
+import com.sist.web.mapper.*;
 import com.sist.web.vo.*;
 
 import lombok.RequiredArgsConstructor;
 
-import com.sist.web.mapper.*;
-
 @Service
 @RequiredArgsConstructor
-public class BusanServiceImpl implements BusanService{
+public class BusanServiceImpl implements BusanService {
 	private final BusanMapper mapper;
-	
+
 	@Override
 	public List<BusanVO> busanListData(Map map) {
 		// TODO Auto-generated method stub
@@ -27,10 +25,20 @@ public class BusanServiceImpl implements BusanService{
 	}
 
 	@Override
-	public BusanVO busanAttractionDetailData(int contentid) {
+	public List<BusanVO> busanFindData(Map map) {
 		// TODO Auto-generated method stub
-		mapper.busanHitIncrement(contentid);
-		return mapper.busanAttractionDetailData(contentid);
+		return mapper.busanFindData(map);
 	}
 
+	@Override
+	public int busanFindTotalPage(String address) {
+		// TODO Auto-generated method stub
+		return mapper.busanFindTotalPage(address);
+	}
+
+	@Override
+	public List<BusanVO> busanTop4Data() {
+		// TODO Auto-generated method stub
+		return mapper.busanTop4Data();
+	}
 }
