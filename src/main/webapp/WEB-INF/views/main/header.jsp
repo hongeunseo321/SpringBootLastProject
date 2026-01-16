@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +28,27 @@
 					<div
 						class="signup-search-area d-flex align-items-center justify-content-end">
 						<div class="login_register_area d-flex">
-							<div class="login">
-								<a href="register.html">Sing in</a>
-							</div>
-							<div class="register">
-								<a href="register.html">Sing up</a>
-							</div>
+							<sec:authorize access="!isAuthenticated()">
+								<div class="login">
+									<a href="/member/join">회원가입</a>
+								</div>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<div class="login">
+									<span>${sessionScope.username} 님 로그인되었습니다!!&nbsp;</span>
+								</div>
+							</sec:authorize>
+							<sec:authorize access="!isAuthenticated()">
+								<div class="register">
+									<a href="/member/login">로그인</a>
+								</div>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<div class="register">
+									<a href="/member/logout" class="btn btn-xs btn-warning">로그아웃</a>
+								</div>
+							</sec:authorize>
+
 						</div>
 
 						<!-- <div class="search_button">
@@ -132,11 +149,25 @@
 									role="button" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">커뮤니티</a>
 									<div class="dropdown-menu" aria-labelledby="yummyDropdown">
-										<a class="dropdown-item" href="index.html">자유게시판</a> <a
-											class="dropdown-item" href="archive.html">공지사항</a> <a
-											class="dropdown-item" href="single.html">일대일채팅</a> <a
-											class="dropdown-item" href="single.html">그룹채팅</a>
+										<a class="dropdown-item" href="/board/list">자유게시판</a> <a
+											class="dropdown-item" href="archive.html">공지사항</a>
+										<sec:authorize access="isAuthenticated()">
+											<a class="dropdown-item" href="/chatbot/chatbot">챗봇</a>
+											<a class="dropdown-item" href="single.html">그룹채팅</a>
+										</sec:authorize>
 									</div></li>
+
+								<sec:authorize access="isAuthenticated()">
+									<sec:authorize access="hasRole('USER')">
+										<li class="nav-item"><a class="nav-link" href="#">마이페이지</a>
+										</li>
+									</sec:authorize>
+
+									<sec:authorize access="hasRole('ADMIN')">
+										<li class="nav-item"><a class="nav-link" href="#">관리자페이지</a>
+										</li>
+									</sec:authorize>
+								</sec:authorize>
 							</ul>
 						</div>
 					</nav>

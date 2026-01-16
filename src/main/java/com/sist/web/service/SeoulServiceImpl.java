@@ -54,6 +54,12 @@ public class SeoulServiceImpl implements SeoulService {
 		return mapper.seoulTop5Data();
 	}
 
+	@Override
+	public SeoulVO seoulFestvalDetailData(int contentid) {
+		// TODO Auto-generated method stub
+		return mapper.seoulFestvalDetailData(contentid);
+	}
+
 	// 구현 => mapper
 	// 통합 => service
 	// 브라우저로 전송 : request(model) => Controller

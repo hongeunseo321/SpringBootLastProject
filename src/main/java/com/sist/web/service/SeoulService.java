@@ -38,4 +38,6 @@ public interface SeoulService {
 	public int seoulFindTotalPage(String address);
 
 	public List<SeoulVO> seoulTop5Data();
+
+	public SeoulVO seoulFestvalDetailData(int contentid);
 }
