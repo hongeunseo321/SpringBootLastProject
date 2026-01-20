@@ -140,7 +140,7 @@ img#food_poster {
 								<tbody>
 									<tr>
 										<td colspan="2" class="text-center"><img
-											:src="store.image" style="width: 300px; height: 300px">
+											:src="store.image" style="width: 300px; height: 210px">
 										</td>
 									</tr>
 									<tr>
