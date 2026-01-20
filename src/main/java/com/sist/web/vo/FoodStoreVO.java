@@ -18,5 +18,5 @@ MSG           CLOB
 @Data
 public class FoodStoreVO {
 	private int no, contentid;
-	private String firstmenu, treatmenu, infocenter, parking, onpendate, opentime, restdate, msg;
+	private String firstmenu, treatmenu, infocenter, parking, opendate, opentime, restdate, msg;
 }

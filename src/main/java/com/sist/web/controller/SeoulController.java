@@ -99,24 +99,27 @@ public class SeoulController {
 		String jsp = "";
 		if (contenttype == 12) {
 			SeoulVO vo = sService.seoulAttractionDetailData(contentid);
-			String[] addrs=vo.getAddress().split(" ");
-			model.addAttribute("addr",addrs[1].trim());
+			String[] addrs = vo.getAddress().split(" ");
+			model.addAttribute("addr", addrs[1].trim());
 			model.addAttribute("vo", vo);
 			jsp = "../seoul/attraction.jsp";
 		} else if (contenttype == 14) {
 			jsp = "../seoul/culture.jsp";
 		} else if (contenttype == 15) {
 			SeoulVO vo = sService.seoulFestvalDetailData(contentid);
-			String[] addrs=vo.getAddress().split(" ");
-			model.addAttribute("addr",addrs[1].trim());
-			model.addAttribute("vo", vo);
+			String[] addrs = vo.getAddress().split(" ");
+			model.addAttribute("addr", addrs[1].trim());
 			model.addAttribute("vo", vo);
 			jsp = "../seoul/fastival.jsp";
 		} else if (contenttype == 32) {
-			jsp = "../seoul/stay.jsp";
+			jsp = "../seoul/stey.jsp";
 		} else if (contenttype == 38) {
 			jsp = "../seoul/shopping.jsp";
 		} else if (contenttype == 39) {
+			SeoulVO vo=sService.seoulFoodStoreDetailData(contentid);
+			String[] addrs = vo.getAddress().split(" ");
+			model.addAttribute("addr", addrs[1].trim());
+			model.addAttribute("vo", vo);
 			jsp = "../seoul/food_store.jsp";
 		}
 		model.addAttribute("main_jsp", jsp);
